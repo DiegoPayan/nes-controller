@@ -1,0 +1,199 @@
+$base-br: 20px;
+$base-bg: #eaebee;
+$base-sh: #8a919d;
+$joy-br: 13px;
+$board-br: #505862;
+$btn-bg: #f42100;
+$btn-sh: #bf1802;
+$menu-btn: #262b30;
+
+@mixin center($justify: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+}
+
+body {
+  @include center;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  position: relative;
+  overflow-y: hidden;
+}
+
+.cable {
+  position: absolute;
+  z-index: -1;
+}
+
+.controller {
+  border: 20px black solid;
+  width: 75%;
+  max-width: 700px;
+  min-width: 700px;
+  height: 40%;
+  border-radius: $base-br;
+
+  &_body {
+    @include center;
+    background-color: $base-bg;
+    width: 101.5%;
+    height: 90%;
+    border-radius: $base-br;
+    margin-left: -6px;
+    margin-top: -6px;
+    box-shadow: 0px 50px 0px 0px $base-sh;
+
+    &_board {
+      background-color: #050606;
+      width: 90%;
+      height: 80%;
+    }
+  }
+}
+
+.controller_body_board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  & > div:nth-child(1) {
+    @include center;
+    position: relative;
+
+    &::before {
+      background-color: $menu-btn;
+      width: 20%;
+      height: 55%;
+      display: block;
+      content: "";
+      border-radius: $joy-br;
+      box-shadow: 0px 5px 0px 0px $board-br;
+      z-index: 1;
+    }
+
+    &::after {
+      position: absolute;
+      background-color: $menu-btn;
+      width: 65%;
+      height: 15%;
+      display: block;
+      content: "";
+      border-radius: $joy-br;
+      box-shadow: 0px 5px 0px 0px $board-br;
+    }
+  }
+
+  & > div:nth-child(2) {
+    @include center(space-between);
+    flex-direction: column;
+
+    & > div:nth-child(1) {
+      background-color: $board-br;
+      width: 90%;
+      height: 15%;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    & > div:nth-child(2) {
+      background-color: $board-br;
+      width: 90%;
+      height: 15%;
+      border-radius: 10px;
+    }
+
+    & > div:nth-child(3) {
+      background-color: $board-br;
+      width: 90%;
+      height: 15%;
+      border-radius: 10px;
+    }
+
+    & > div:nth-child(5) {
+      background-color: $board-br;
+      width: 90%;
+      height: 13%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+  }
+}
+
+@mixin btnMenu() {
+  background-color: #050606;
+  width: 55px;
+  height: 15px;
+  content: "";
+  display: block;
+  border-radius: 10px;
+}
+
+.controller_body_board > div:nth-child(2) > div:nth-child(4) {
+  @include center;
+  background-color: #d0d5db;
+  width: 90%;
+  height: 22%;
+  border-radius: 10px;
+
+  & > div {
+    width: 90%;
+    height: 80%;
+    background-color: $base-bg;
+
+    @include center(space-around);
+
+    &::after {
+      @include btnMenu;
+    }
+
+    &::before {
+      @include btnMenu;
+    }
+  }
+}
+
+@mixin btnABBase() {
+  background-color: #d0d5db;
+  width: 30%;
+  height: 28%;
+  border-radius: 10px;
+  margin-left: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+@mixin btnAB() {
+  background-color: $btn-bg;
+  border-radius: 50%;
+  width: 80%;
+  height: 80%;
+  content: "";
+  display: block;
+  margin-top: -4px;
+  box-shadow: 0px 10px 0px 0px $btn-sh;
+}
+
+.controller_body_board > div:nth-child(3) {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 50px;
+
+  & > div:nth-child(1) {
+    @include btnABBase;
+
+    &::before {
+      @include btnAB;
+    }
+  }
+
+  & > div:nth-child(2) {
+    @include btnABBase;
+
+    &::before {
+      @include btnAB;
+    }
+  }
+}
