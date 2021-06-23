@@ -21,11 +21,12 @@ jobs:
           source: styles.scss
           destination: styles.css
           
+      - name: Config email
+        run: git config --local user.email 'action@github.com'
+      - name: Config username
+        run: git config --local user.name 'Github action'
       - name: Add and commit changes
-        run: |
-          git config --local user.email 'action@github.com'
-          git config --local user.name 'Github action'
-          git commit -m 'Update compiled CSS files' -a
+        run: git commit -m 'Update compiled CSS files' -a
           
       - name: Push changes
         uses: ad-m/github-push-action@master
