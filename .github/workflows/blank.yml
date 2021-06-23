@@ -23,8 +23,12 @@ jobs:
           
       - name: Add and commit changes
         run: |
-          git config --global user.email 'action@github.com'
-          git config --global user.name 'Github action'
-          git add -A
-          git commit -m 'Update compiled CSS files'
-          git push
+          git config --local user.email 'action@github.com'
+          git config --local user.name 'Github action'
+          git commit -m 'Update compiled CSS files' -a
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
